@@ -5,7 +5,7 @@ import os
 uploaded_zip = st.file_uploader("Загрузите ZIP-файл", type=["zip"])
 if uploaded_zip is not None:
     zf = zipfile.ZipFile(uploaded_zip)
-    os.makedirs('GUOKS')
+    os.makedirs(os.path.join(os.getcwd(),'GUOKS'))
     zf.extractall(os.path.join(os.getcwd(),'GUOKS'))
     zf.close()
 st.success("Распаковано")
