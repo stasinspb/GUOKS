@@ -152,7 +152,7 @@ if uploaded_zip is not None:
                         writer_output.addpage(reader_input.pages[current_page])
     
                 writer_output.write(os.path.join(os.path.join(os.getcwd(), "Технический план.pdf"))) # сохраняем файл пдф
-                st.write(new_name + " - файл подготовлен")
+                st.write(new_name)
     
     #st.write(os.listdir(dir_path))
     with open(os.path.join(os.getcwd(), "Технический план.pdf"), "rb") as file:
