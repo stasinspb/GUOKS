@@ -63,6 +63,7 @@ for roots, dirs, files in os.walk(dir_path):
 
         ############  работа с xml ################
         #xml = os.path.join(roots, file)
+        st.write(os.path.join(roots, file))
         xml = file
         tree = ET.ElementTree(file=xml)
         root = tree.getroot()
