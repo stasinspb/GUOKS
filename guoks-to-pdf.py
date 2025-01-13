@@ -161,7 +161,7 @@ uploaded_file = st.file_uploader("Загрузите ZIP-файл", type=["zip"]
 
 if uploaded_file is not None:
     # Сохраняем файл локально
-    save_path = "/tmp/uploaded_file.zip"
+    save_path = "./uploaded_file.zip"
     with open(save_path, "wb") as f:
         f.write(uploaded_file.getbuffer())
 
