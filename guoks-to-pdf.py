@@ -8,6 +8,7 @@ import streamlit as st
 import warnings
 warnings.filterwarnings("ignore", category=SyntaxWarning)
 
+
 def process_files(file_path):
     dir_path = os.path.dirname(file_path)
 
@@ -143,7 +144,9 @@ def process_xml(roots, dirs, file, dir_path):
 
     output_pdf_path = os.path.join(dir_path, "Технический план.pdf")
     writer_output.write(output_pdf_path)
-    st.success(f"PDF файл успешно создан: {output_pdf_path}")
+    
+    # Возвращаем путь к созданному PDF для загрузки
+    return output_pdf_path
 
 # Streamlit интерфейс
 st.title("Процесс обработки ZIP-файлов и создания PDF")
@@ -156,6 +159,16 @@ if uploaded_file is not None:
 
     st.write("Обработка файла...")
     try:
-        process_files("uploaded_file.zip")
+        pdf_path = process_files("uploaded_file.zip")
+        st.success("Процесс завершен успешно.")
+        
+        # Добавляем кнопку для скачивания PDF
+        with open(pdf_path, "rb") as pdf_file:
+            st.download_button(
+                label="Скачать PDF",
+                data=pdf_file,
+                file_name="Технический план.pdf",
+                mime="application/pdf"
+            )
     except Exception as e:
         st.error(f"Произошла ошибка: {e}")
