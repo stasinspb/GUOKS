@@ -58,7 +58,7 @@ for roots, dirs, files in os.walk(dir_path):
                 if "TextPart" in my_file:
                     text = my_file
 
-        st.write(text)
+        #st.write(text)
 
 
         ############  работа с xml ################
