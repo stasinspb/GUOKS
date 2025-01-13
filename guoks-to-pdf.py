@@ -49,6 +49,7 @@ for roots, dirs, files in os.walk(dir_path):
     for file in files:
         new_name = "noname"
         if file.endswith('.xml'):
+            st.write(dirs)
             geo = []        # назначаем массивы для файлов с геодезией
             dis = []        # со схемами ЗУ
             dia = []        # с чертежами
