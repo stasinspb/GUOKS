@@ -9,7 +9,7 @@ from pdfrw import PdfReader, PdfWriter
 
 
 uploaded_zip = st.file_uploader("Загрузите ZIP-файл", type=["zip"])
-real_time_data = st.empty()
+st.empty()
 if uploaded_zip is not None:
     zf = zipfile.ZipFile(uploaded_zip)
     if os.path.exists('GUOKS'):
