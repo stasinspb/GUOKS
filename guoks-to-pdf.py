@@ -83,7 +83,7 @@ for roots, dirs, files in os.walk(dir_path):
                         geo.append(a.attrib['Name'])
                 finally:
                     pass  
-                    
+            st.write(geo)        
             for element in root.iter('SchemeDisposition'):      # ... по файлам схем ЗУ
                 try:
                     dis.append(element.attrib['Name'])
@@ -110,7 +110,7 @@ for roots, dirs, files in os.walk(dir_path):
                 for a in element:
                     if a[1].text != "Текстовая часть технического плана":
                        apps.append(a[2].attrib['Name'])
-
+            st.write(apps) 
 ########### начинаем собирать пдф ########################################
             reader_input = PdfReader(os.path.join(roots, text))    # начинаем с текстовой части
             writer_output = PdfWriter()
