@@ -63,7 +63,7 @@ for roots, dirs, files in os.walk(dir_path):
 
         ############  работа с xml ################
         xml = os.path.join(roots, file)
-        st.write(xml)
+st.write(xml)
 
 
 
