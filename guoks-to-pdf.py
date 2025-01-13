@@ -118,6 +118,7 @@ for roots, dirs, files in os.walk(dir_path):
                 writer_output.addpage(reader_input.pages[current_page])
             
             for p in geo:                                           # добавляем файлы с геодезией
+                st.write(os.path.join(roots, p))
                 reader_input = PdfReader(os.path.join(roots, p))
                 for current_page in range(len(reader_input.pages)):
                     writer_output.addpage(reader_input.pages[current_page])
