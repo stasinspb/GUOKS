@@ -4,7 +4,6 @@ import zipfile
 import shutil
 import xml.etree.cElementTree as ET
 from pdfrw import PdfReader, PdfWriter
-from tkinter import filedialog
 import img2pdf
 
 st.title("Печать технического плана")
