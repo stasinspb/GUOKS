@@ -41,7 +41,7 @@ except:
 
 my_files = os.listdir(dir_path)
 
-#st.write(my_files)
+#write(my_files)
 
 #----------------------
 for roots, dirs, files in os.walk(dir_path):
@@ -59,12 +59,11 @@ for roots, dirs, files in os.walk(dir_path):
                 if "TextPart" in my_file:
                     text = my_file
 
-            #st.write(text)
+            #write(text)
     
     
             ############  работа с xml ################
             xml = os.path.join(roots, file)
-            st.write(os.path.join(roots, file))
             tree = ET.ElementTree(file=xml)
             root = tree.getroot()
             for elem1 in root.iter('Package'):
@@ -153,6 +152,13 @@ for roots, dirs, files in os.walk(dir_path):
             st.write("ГОТОВО")
 
 st.write(os.listdir(dir_path))
+with open(os.path.join(dir_path, "Технический план.pdf"), "rb") as file:
+    st.download_button(
+        label="Скачать отчетный файл",
+        data=file,
+        file_name="Технический план.pdf",
+        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    )
 
 
 
