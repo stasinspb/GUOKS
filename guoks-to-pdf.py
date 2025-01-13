@@ -38,9 +38,13 @@ try:
             os.rename(os.path.join(root, file), os.path.join(root, file_name))
 except:
     pass
-st.write(os.listdir(dir_path))
+#st.write(os.listdir(dir_path))
 
-st.write(os.walk(dir_path))
+#st.write(os.walk(dir_path))
+
+for it in os.scandir(dir_path):
+    if it.is_dir():
+        print(it.path)
 
 for roots, dirs, files in os.walk(dir_path):
     st.write(dirs)
