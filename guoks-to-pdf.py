@@ -152,12 +152,12 @@ if uploaded_zip is not None:
                         writer_output.addpage(reader_input.pages[current_page])
     
                 writer_output.write(os.path.join(os.path.join(os.getcwd(), "Технический план.pdf"))) # сохраняем файл пдф
-                st.write("ГОТОВО")
+                st.write(new_name + " - файл подготовлен")
     
     #st.write(os.listdir(dir_path))
     with open(os.path.join(os.getcwd(), "Технический план.pdf"), "rb") as file:
         st.download_button(
-            label="Скачать отчетный файл",
+            label="Скачать pdf",
             data=file,
             file_name="Технический план.pdf",
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
