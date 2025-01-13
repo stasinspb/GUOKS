@@ -11,4 +11,5 @@ if uploaded_zip is not None:
 st.success("Распаковано")
 st.success(os.getcwd())
 st.write(os.listdir(os.getcwd()))
+st.write(os.listdir(os.path.join(os.getcwd(),'GUOKS')))
 
