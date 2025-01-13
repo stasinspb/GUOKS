@@ -1,4 +1,3 @@
-zipfile
 shutil
 xml.etree.ElementTree
 pdfrw
