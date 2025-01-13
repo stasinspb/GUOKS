@@ -63,8 +63,54 @@ for roots, dirs, files in os.walk(dir_path):
 
         ############  работа с xml ################
         xml = os.path.join(roots, file)
-st.write(xml)
-
+        tree = ET.ElementTree(file=xml)
+        root = tree.getroot()
+        for elem1 in root.iter('Package'):
+            for elem2 in elem1[0]:
+                if elem2.tag == 'Name':
+                    new_name = elem2.text
+                    break
+                for elem3 in elem2:
+                    if elem3.tag == 'Name':
+                        new_name = elem3.text
+                        
+        for element in root.iter('SchemeGeodesicPlotting'):     # заполняем массивы с именами файлов по геодезии
+            try:
+                geo.append(element.attrib['Name'])
+            except:
+                for a in element:
+                    geo.append(a.attrib['Name'])
+            finally:
+                pass
+        st.write(geo)        
+        for element in root.iter('SchemeDisposition'):      # ... по файлам схем ЗУ
+            try:
+                dis.append(element.attrib['Name'])
+            except:
+                for a in element:
+                    dis.append(a.attrib['Name'])
+            finally:
+                pass
+        st.write(dis) 
+        for element in root.iter('DiagramContour'):         # ... по файлам с чертежами
+            try:
+                dia.append(element.attrib['Name'])
+            except:
+                for a in element:
+                    dia.append(a.attrib['Name'])
+            finally:
+                pass
+        st.write(dia)        
+        for my_file in my_files:
+            if my_file.endswith('.jpg'):
+                plans.append(my_file)
+        st.write(plans)
+        for element in root.iter('Appendix'):               # ... по файлам с приложениями, кроме файла с текстовой частью
+            for a in element:
+                if a[1].text != "Текстовая часть технического плана":
+                   apps.append(a[2].attrib['Name'])
+        st.write(apps)
+########### начинаем собирать пдф ########################################
 
 
 
