@@ -40,16 +40,14 @@ try:
 except:
     pass
 
-my_files = os.listdir(os.path.join(dir_path,'Applied_files_Cons'))
-
-st.write(my_files)
 
 #----------------------
 for roots, dirs, files in os.walk(dir_path):
     for file in files:
         new_name = "noname"
         if file.endswith('.xml'):
-            st.write(dirs)
+            my_files = os.listdir(os.path.join(roots, dirs[0]))
+            st.write(my_files)
             geo = []        # назначаем массивы для файлов с геодезией
             dis = []        # со схемами ЗУ
             dia = []        # с чертежами
