@@ -112,6 +112,7 @@ for roots, dirs, files in os.walk(dir_path):
                        apps.append(a[2].attrib['Name'])
             st.write(apps) 
 ########### начинаем собирать пдф ########################################
+            st.write(os.path.join(roots, dirs[0], text)) 
             reader_input = PdfReader(os.path.join(roots, dirs[0], text))    # начинаем с текстовой части
             writer_output = PdfWriter()
             for current_page in range(len(reader_input.pages)):
