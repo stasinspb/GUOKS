@@ -1,4 +1,6 @@
+zipfile
+shutil
+xml.etree.ElementTree
+pdfrw
+img2pdf
 streamlit
-xlsxwriter
-requests
-urllib3
