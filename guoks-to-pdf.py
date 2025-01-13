@@ -6,10 +6,12 @@ import img2pdf
 import xml.etree.cElementTree as ET
 from pdfrw import PdfReader, PdfWriter
 
+
+
 uploaded_zip = st.file_uploader("Загрузите ZIP-файл", type=["zip"])
 if uploaded_zip is not None:
     zf = zipfile.ZipFile(uploaded_zip)
-    os.mkdir('GUOKS')
+    os.makedirs('GUOKS')
     dir_path = os.path.join(os.getcwd(),'GUOKS')
     zf.extractall(dir_path)
     zf.close()
