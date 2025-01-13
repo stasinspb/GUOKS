@@ -147,7 +147,7 @@ for roots, dirs, files in os.walk(dir_path):
                 print("Не добавились поэтажные планы: - ", new_name)
 
             for p in apps:                                          # добавляем файлы приложений
-                reader_input = PdfReader(os.path.join(roots, p))
+                reader_input = PdfReader(os.path.join(roots, p).replace("\\","/"))
                 for current_page in range(len(reader_input.pages)):
                     writer_output.addpage(reader_input.pages[current_page])
 
