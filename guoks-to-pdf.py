@@ -39,6 +39,9 @@ try:
 except:
     pass
 st.write(os.listdir(dir_path))
+
+st.write(os.walk(directory))
+
 for roots, dirs, files in os.walk(dir_path):
     st.write(dirs)
     for file in files:
