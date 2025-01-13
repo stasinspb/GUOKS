@@ -5,11 +5,12 @@ import xml.etree.cElementTree as ET
 from pdfrw import PdfReader, PdfWriter
 import img2pdf
 import streamlit as st
-import warnings
-warnings.filterwarnings("ignore", category=SyntaxWarning)
-
 
 def process_files(file_path):
+    # Проверяем, существует ли путь
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(f"Файл {file_path} не найден!")
+
     dir_path = os.path.dirname(file_path)
 
     # Распаковка zip-файла
@@ -41,17 +42,7 @@ def process_files(file_path):
     for roots, dirs, files in os.walk(dir_path):
         for file in files:
             if file.endswith('.xml'):
-                process_xml(roots, dirs, file, dir_path)
-
-    # Удаляем временные папки и файлы
-    for root, dirs, files in os.walk(dir_path):
-        for a in dirs:
-            shutil.rmtree(os.path.join(root, a))
-        for file in files:
-            if file.endswith('.xml'):
-                os.remove(os.path.join(root, file))
-
-    st.success("Процесс завершен успешно.")
+                return process_xml(roots, dirs, file, dir_path)
 
 def process_xml(roots, dirs, file, dir_path):
     new_name = "noname"
@@ -145,8 +136,11 @@ def process_xml(roots, dirs, file, dir_path):
     output_pdf_path = os.path.join(dir_path, "Технический план.pdf")
     writer_output.write(output_pdf_path)
     
-    # Возвращаем путь к созданному PDF для загрузки
-    return output_pdf_path
+    # Проверяем, существует ли файл
+    if os.path.exists(output_pdf_path):
+        return output_pdf_path
+    else:
+        raise FileNotFoundError(f"Не удалось создать PDF по пути: {output_pdf_path}")
 
 # Streamlit интерфейс
 st.title("Процесс обработки ZIP-файлов и создания PDF")
