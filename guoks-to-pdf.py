@@ -149,9 +149,9 @@ for roots, dirs, files in os.walk(dir_path):
                     writer_output.addpage(reader_input.pages[current_page])
 
             writer_output.write(os.path.join(os.path.join(dir_path, "Технический план.pdf"))) # сохраняем файл пдф
-            st.write("ГОТОВО")
+            #st.write("ГОТОВО")
 
-st.write(os.listdir(dir_path))
+#st.write(os.listdir(dir_path))
 with open(os.path.join(dir_path, "Технический план.pdf"), "rb") as file:
     st.download_button(
         label="Скачать отчетный файл",
