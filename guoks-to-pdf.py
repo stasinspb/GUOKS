@@ -112,7 +112,7 @@ for roots, dirs, files in os.walk(dir_path):
                        apps.append(a[2].attrib['Name'])
             st.write(apps) 
 ########### начинаем собирать пдф ########################################
-            reader_input = PdfReader(os.path.join(roots, text))    # начинаем с текстовой части
+            reader_input = PdfReader(os.path.join(roots, dirs[0], text))    # начинаем с текстовой части
             writer_output = PdfWriter()
             for current_page in range(len(reader_input.pages)):
                 writer_output.addpage(reader_input.pages[current_page])
@@ -148,11 +148,11 @@ for roots, dirs, files in os.walk(dir_path):
                 for current_page in range(len(reader_input.pages)):
                     writer_output.addpage(reader_input.pages[current_page])
 
-            writer_output.write(os.path.join(os.path.join(dir_path, "Технический план.pdf"))) # сохраняем файл пдф
-            #st.write("ГОТОВО")
+            writer_output.write(os.path.join(os.path.join(os.getcwd(), "Технический план.pdf"))) # сохраняем файл пдф
+            st.write("ГОТОВО")
 
 #st.write(os.listdir(dir_path))
-with open(os.path.join(dir_path, "Технический план.pdf"), "rb") as file:
+with open(os.path.join(os.getcwd(), "Технический план.pdf"), "rb") as file:
     st.download_button(
         label="Скачать отчетный файл",
         data=file,
