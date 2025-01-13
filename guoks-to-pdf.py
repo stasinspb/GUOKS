@@ -9,6 +9,7 @@ from pdfrw import PdfReader, PdfWriter
 
 
 uploaded_zip = st.file_uploader("Загрузите ZIP-файл", type=["zip"])
+real_time_data = st.empty()
 if uploaded_zip is not None:
     zf = zipfile.ZipFile(uploaded_zip)
     if os.path.exists('GUOKS'):
@@ -47,7 +48,7 @@ if uploaded_zip is not None:
             new_name = "noname"
             if file.endswith('.xml'):
                 my_files = os.listdir(os.path.join(roots, dirs[0]))
-                st.write(my_files)
+                #st.write(my_files)
                 geo = []        # назначаем массивы для файлов с геодезией
                 dis = []        # со схемами ЗУ
                 dia = []        # с чертежами
@@ -59,7 +60,7 @@ if uploaded_zip is not None:
                     if "TextPart" in my_file:
                         text = my_file
     
-                st.write(text)
+                #st.write(text)
         
         
                 ############  работа с xml ################
@@ -83,7 +84,7 @@ if uploaded_zip is not None:
                             geo.append(a.attrib['Name'])
                     finally:
                         pass  
-                st.write(geo)        
+                #st.write(geo)        
                 for element in root.iter('SchemeDisposition'):      # ... по файлам схем ЗУ
                     try:
                         dis.append(element.attrib['Name'])
@@ -110,18 +111,18 @@ if uploaded_zip is not None:
                     for a in element:
                         if a[1].text != "Текстовая часть технического плана":
                            apps.append(a[2].attrib['Name'])
-                st.write(apps) 
+                #st.write(apps) 
     ########### начинаем собирать пдф ########################################
-                st.write(os.path.join(roots, dirs[0], text)) 
+                #st.write(os.path.join(roots, dirs[0], text)) 
                 reader_input = PdfReader(os.path.join(roots, dirs[0], text))    # начинаем с текстовой части
                 writer_output = PdfWriter()
                 for current_page in range(len(reader_input.pages)):
                     writer_output.addpage(reader_input.pages[current_page])
-                st.write("Текст добавлен")
+                #st.write("Текст добавлен")
                 for p in geo:                                           # добавляем файлы с геодезией
-                    st.write(os.path.join(roots, p))
+                    #st.write(os.path.join(roots, p))
                     reader_input = PdfReader(os.path.join(roots, p).replace("\\","/"))
-                    st.write("Гео добавлен")
+                    #st.write("Гео добавлен")
                     for current_page in range(len(reader_input.pages)):
                         writer_output.addpage(reader_input.pages[current_page])
     
