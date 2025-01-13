@@ -17,3 +17,4 @@ temp_dir = "temp_folder"
 os.makedirs(temp_dir)
 with zipfile.ZipFile(uploaded_file, 'r') as zip_ref:
     zip_ref.extractall(temp_dir)
+st.title("архив распакован")
