@@ -55,7 +55,7 @@ for roots, dirs, files in os.walk(dir_path):
             zd = False
             text = ""                       # определяем имя файла с текстовой частью ТП
             for my_file in my_files:
-                if "TextPart" in my_file
+                if "TextPart" in my_file:
                     text = my_file
 
 st.write(text)
