@@ -7,9 +7,8 @@ import xml.etree.cElementTree as ET
 from pdfrw import PdfReader, PdfWriter
 
 
-
-uploaded_zip = st.file_uploader("Загрузите ZIP-файл", type=["zip"])
-st.empty()
+st.title("Создание pdf из zip-архива технического плана")
+uploaded_zip = st.file_uploader("Загрузите ZIP-файл технического плана", type=["zip"])
 if uploaded_zip is not None:
     zf = zipfile.ZipFile(uploaded_zip)
     if os.path.exists('GUOKS'):
