@@ -38,6 +38,24 @@ try:
             os.rename(os.path.join(root, file), os.path.join(root, file_name))
 except:
     pass
-st.write(os.listdir(dir_path))
 
+my_files = os.listdir(dir_path)
+st.write(my_files)
 
+#----------------------
+for roots, dirs, files in os.walk(dir_path):
+    for file in files:
+        new_name = "noname"
+        if file.endswith('.xml'):
+            geo = []        # назначаем массивы для файлов с геодезией
+            dis = []        # со схемами ЗУ
+            dia = []        # с чертежами
+            plans = []      # с поэтажками
+            apps = []       # с приложениями
+            zd = False
+            text = ""                       # определяем имя файла с текстовой частью ТП
+            for my_file in my_files:
+                if "TextPart" in my_file
+                    text = my_file
+
+st.write(text)
