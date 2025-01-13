@@ -42,4 +42,4 @@ for roots, dirs, files in os.walk(dir_path):
     for file in files:
         new_name = "noname"
         if file.endswith('.xml'):
-            st.write(dirs)
+            st.write(roots)
