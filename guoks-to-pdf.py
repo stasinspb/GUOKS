@@ -126,18 +126,18 @@ for roots, dirs, files in os.walk(dir_path):
                     writer_output.addpage(reader_input.pages[current_page])
 
             for p in dis:                                           # добавляем файлы со схемами ЗУ
-                reader_input = PdfReader(os.path.join(roots, p))
+                reader_input = PdfReader(os.path.join(roots, p).replace("\\","/"))
                 for current_page in range(len(reader_input.pages)):
                     writer_output.addpage(reader_input.pages[current_page])
 
             for p in dia:                                           # добавляем файлы с чертежами
-                reader_input = PdfReader(os.path.join(roots, p))
+                reader_input = PdfReader(os.path.join(roots, p).replace("\\","/"))
                 for current_page in range(len(reader_input.pages)):
                     writer_output.addpage(reader_input.pages[current_page])
 
             try:
                 for p in plans:                                           # добавляем файлы с поэтажками
-                    pdf = img2pdf.convert(os.path.join(roots, p))                       # создаем из картинки пдф
+                    pdf = img2pdf.convert(os.path.join(roots, p).replace("\\","/"))                       # создаем из картинки пдф
                     with open(os.path.join(roots, 'jpg-to-pdf.pdf'), 'wb') as f:
                         f.write(pdf)
                     reader_input = PdfReader(os.path.join(roots, 'jpg-to-pdf.pdf'))     # добавляем созданный пдф
