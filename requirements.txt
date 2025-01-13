@@ -1,3 +1,3 @@
-pdfrw
+PyPDF2
 img2pdf
 streamlit
