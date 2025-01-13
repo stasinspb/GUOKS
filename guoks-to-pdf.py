@@ -82,8 +82,8 @@ for roots, dirs, files in os.walk(dir_path):
                     for a in element:
                         geo.append(a.attrib['Name'])
                 finally:
-                    pass
-            st.write(geo)        
+                    pass  
+                    
             for element in root.iter('SchemeDisposition'):      # ... по файлам схем ЗУ
                 try:
                     dis.append(element.attrib['Name'])
@@ -91,8 +91,8 @@ for roots, dirs, files in os.walk(dir_path):
                     for a in element:
                         dis.append(a.attrib['Name'])
                 finally:
-                    pass
-            st.write(dis) 
+                    pass 
+                    
             for element in root.iter('DiagramContour'):         # ... по файлам с чертежами
                 try:
                     dia.append(element.attrib['Name'])
@@ -101,17 +101,22 @@ for roots, dirs, files in os.walk(dir_path):
                         dia.append(a.attrib['Name'])
                 finally:
                     pass
-            st.write(dia)        
+                    
             for my_file in my_files:
                 if my_file.endswith('.jpg'):
                     plans.append(my_file)
-            st.write(plans)
+                    
             for element in root.iter('Appendix'):               # ... по файлам с приложениями, кроме файла с текстовой частью
                 for a in element:
                     if a[1].text != "Текстовая часть технического плана":
                        apps.append(a[2].attrib['Name'])
-            st.write(apps)
+
 ########### начинаем собирать пдф ########################################
+            reader_input = PdfReader(os.path.join(roots, text))    # начинаем с текстовой части
+            writer_output = PdfWriter()
+            for current_page in range(len(reader_input.pages)):
+                writer_output.addpage(reader_input.pages[current_page])
+            st.write("Текст добавлен")
 
 
 
