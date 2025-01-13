@@ -1,4 +1,3 @@
-shutil
 xml.etree.ElementTree
 pdfrw
 img2pdf
