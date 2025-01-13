@@ -116,7 +116,40 @@ for roots, dirs, files in os.walk(dir_path):
             writer_output = PdfWriter()
             for current_page in range(len(reader_input.pages)):
                 writer_output.addpage(reader_input.pages[current_page])
-            st.write("Текст добавлен")
+            
+            for p in geo:                                           # добавляем файлы с геодезией
+                reader_input = PdfReader(os.path.join(roots, p))
+                for current_page in range(len(reader_input.pages)):
+                    writer_output.addpage(reader_input.pages[current_page])
+
+            for p in dis:                                           # добавляем файлы со схемами ЗУ
+                reader_input = PdfReader(os.path.join(roots, p))
+                for current_page in range(len(reader_input.pages)):
+                    writer_output.addpage(reader_input.pages[current_page])
+
+            for p in dia:                                           # добавляем файлы с чертежами
+                reader_input = PdfReader(os.path.join(roots, p))
+                for current_page in range(len(reader_input.pages)):
+                    writer_output.addpage(reader_input.pages[current_page])
+
+            try:
+                for p in plans:                                           # добавляем файлы с поэтажками
+                    pdf = img2pdf.convert(os.path.join(roots, p))                       # создаем из картинки пдф
+                    with open(os.path.join(roots, 'jpg-to-pdf.pdf'), 'wb') as f:
+                        f.write(pdf)
+                    reader_input = PdfReader(os.path.join(roots, 'jpg-to-pdf.pdf'))     # добавляем созданный пдф
+                    for current_page in range(len(reader_input.pages)):
+                        writer_output.addpage(reader_input.pages[current_page])
+            except:
+                print("Не добавились поэтажные планы: - ", new_name)
+
+            for p in apps:                                          # добавляем файлы приложений
+                reader_input = PdfReader(os.path.join(roots, p))
+                for current_page in range(len(reader_input.pages)):
+                    writer_output.addpage(reader_input.pages[current_page])
+
+            writer_output.write(os.path.join(os.path.join(dir_path, "Технический план.pdf"))) # сохраняем файл пдф
+            st.write("ГОТОВО")
 
 
 
