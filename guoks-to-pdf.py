@@ -9,5 +9,5 @@ if uploaded_zip is not None:
     zf.close()
 st.success("Распаковано")
 st.success(os.getcwd())
-st.success(os.listdir(os.getcwd()))
+st.write(os.listdir(os.getcwd()))
 
