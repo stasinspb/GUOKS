@@ -13,3 +13,7 @@ uploaded_file = st.file_uploader("Загрузите файл GUOKS....zip", typ
 
 if uploaded_file is not None:
     st.success("Файл успешно загружен!")
+
+os.makedirs(temp_dir)
+with zipfile.ZipFile(uploaded_file, 'r') as zip_ref:
+    zip_ref.extractall(temp_dir)
