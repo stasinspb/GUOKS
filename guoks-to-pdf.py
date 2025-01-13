@@ -2,7 +2,7 @@ import os
 import zipfile
 import shutil
 import xml.etree.cElementTree as ET
-from pdfrw import PdfReader, PdfWriter
+import PyPDF2
 import img2pdf
 import streamlit as st
 
@@ -96,45 +96,60 @@ def process_xml(roots, dirs, file, dir_path):
             if a[1].text != "Текстовая часть технического плана":
                 apps.append(a[2].attrib['Name'])
 
-    # Создание PDF
-    reader_input = PdfReader(os.path.join(roots, dirs[0], text))
-    writer_output = PdfWriter()
-    for current_page in range(len(reader_input.pages)):
-        writer_output.addpage(reader_input.pages[current_page])
+    # Создание PDF с использованием PyPDF2
+    pdf_writer = PyPDF2.PdfWriter()
 
+    # Текстовая часть ТП
+    with open(os.path.join(roots, dirs[0], text), "rb") as f:
+        reader = PyPDF2.PdfReader(f)
+        for page in reader.pages:
+            pdf_writer.add_page(page)
+
+    # Геодезия
     for p in geo:
-        reader_input = PdfReader(os.path.join(roots, p))
-        for current_page in range(len(reader_input.pages)):
-            writer_output.addpage(reader_input.pages[current_page])
+        with open(os.path.join(roots, p), "rb") as f:
+            reader = PyPDF2.PdfReader(f)
+            for page in reader.pages:
+                pdf_writer.add_page(page)
 
+    # Схемы ЗУ
     for p in dis:
-        reader_input = PdfReader(os.path.join(roots, p))
-        for current_page in range(len(reader_input.pages)):
-            writer_output.addpage(reader_input.pages[current_page])
+        with open(os.path.join(roots, p), "rb") as f:
+            reader = PyPDF2.PdfReader(f)
+            for page in reader.pages:
+                pdf_writer.add_page(page)
 
+    # Черчежи
     for p in dia:
-        reader_input = PdfReader(os.path.join(roots, p))
-        for current_page in range(len(reader_input.pages)):
-            writer_output.addpage(reader_input.pages[current_page])
+        with open(os.path.join(roots, p), "rb") as f:
+            reader = PyPDF2.PdfReader(f)
+            for page in reader.pages:
+                pdf_writer.add_page(page)
 
+    # Поэтажные планы
     try:
         for p in plans:
-            pdf = img2pdf.convert(os.path.join(roots, dirs[0], p))
+            pdf_data = img2pdf.convert(os.path.join(roots, dirs[0], p))
             with open(os.path.join(roots, dirs[0], 'jpg-to-pdf.pdf'), 'wb') as f:
-                f.write(pdf)
-            reader_input = PdfReader(os.path.join(roots, dirs[0], 'jpg-to-pdf.pdf'))
-            for current_page in range(len(reader_input.pages)):
-                writer_output.addpage(reader_input.pages[current_page])
+                f.write(pdf_data)
+            with open(os.path.join(roots, dirs[0], 'jpg-to-pdf.pdf'), "rb") as f:
+                reader = PyPDF2.PdfReader(f)
+                for page in reader.pages:
+                    pdf_writer.add_page(page)
     except:
         st.warning("Не добавились поэтажные планы.")
 
+    # Приложения
     for p in apps:
-        reader_input = PdfReader(os.path.join(roots, p))
-        for current_page in range(len(reader_input.pages)):
-            writer_output.addpage(reader_input.pages[current_page])
+        with open(os.path.join(roots, p), "rb") as f:
+            reader = PyPDF2.PdfReader(f)
+            for page in reader.pages:
+                pdf_writer.add_page(page)
 
+    # Сохраняем финальный PDF
     output_pdf_path = os.path.join(dir_path, "Технический план.pdf")
-    writer_output.write(output_pdf_path)
+    with open(output_pdf_path, "wb") as f:
+        pdf_writer.write(f)
 
     # Возвращаем путь к PDF
     return output_pdf_path
