@@ -40,10 +40,9 @@ try:
 except:
     pass
 
-my_files = os.listdir(dir_path)
+my_files = os.listdir(os.path.join(dir_path,'Applied_files_Cons'))
 
 st.write(my_files)
-st.write(os.listdir(os.path.join(dir_path,'Applied_files_Cons')))
 
 #----------------------
 for roots, dirs, files in os.walk(dir_path):
