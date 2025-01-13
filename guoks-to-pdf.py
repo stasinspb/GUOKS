@@ -40,7 +40,8 @@ except:
     pass
 
 my_files = os.listdir(dir_path)
-st.write(my_files)
+
+#st.write(my_files)
 
 #----------------------
 for roots, dirs, files in os.walk(dir_path):
@@ -150,6 +151,8 @@ for roots, dirs, files in os.walk(dir_path):
 
             writer_output.write(os.path.join(os.path.join(dir_path, "Технический план.pdf"))) # сохраняем файл пдф
             st.write("ГОТОВО")
+
+st.write(os.listdir(dir_path))
 
 
 
