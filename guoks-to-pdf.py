@@ -5,6 +5,8 @@ import xml.etree.cElementTree as ET
 from pdfrw import PdfReader, PdfWriter
 import img2pdf
 import streamlit as st
+import warnings
+warnings.filterwarnings("ignore", category=SyntaxWarning)
 
 def process_files(file_path):
     dir_path = os.path.dirname(file_path)
