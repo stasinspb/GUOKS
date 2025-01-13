@@ -11,8 +11,9 @@ from pdfrw import PdfReader, PdfWriter
 uploaded_zip = st.file_uploader("Загрузите ZIP-файл", type=["zip"])
 if uploaded_zip is not None:
     zf = zipfile.ZipFile(uploaded_zip)
-    if not os.path.exists('GUOKS'):
-        os.makedirs('GUOKS')
+    if os.path.exists('GUOKS'):
+        shutil.rmtree(os.path.join(os.getcwd(),'GUOKS'))
+    os.makedirs('GUOKS')
     dir_path = os.path.join(os.getcwd(),'GUOKS')
     zf.extractall(dir_path)
     zf.close()
