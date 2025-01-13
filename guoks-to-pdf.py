@@ -135,12 +135,9 @@ def process_xml(roots, dirs, file, dir_path):
 
     output_pdf_path = os.path.join(dir_path, "Технический план.pdf")
     writer_output.write(output_pdf_path)
-    
-    # Проверяем, существует ли файл
-    if os.path.exists(output_pdf_path):
-        return output_pdf_path
-    else:
-        raise FileNotFoundError(f"Не удалось создать PDF по пути: {output_pdf_path}")
+
+    # Возвращаем путь к PDF
+    return output_pdf_path
 
 # Streamlit интерфейс
 st.title("Процесс обработки ZIP-файлов и создания PDF")
@@ -148,21 +145,26 @@ st.title("Процесс обработки ZIP-файлов и создания
 uploaded_file = st.file_uploader("Загрузите ZIP-файл", type=["zip"])
 
 if uploaded_file is not None:
-    with open("uploaded_file.zip", "wb") as f:
+    # Сохраняем файл локально
+    save_path = "/tmp/uploaded_file.zip"
+    with open(save_path, "wb") as f:
         f.write(uploaded_file.getbuffer())
 
     st.write("Обработка файла...")
+
     try:
-        pdf_path = process_files("uploaded_file.zip")
-        st.success("Процесс завершен успешно.")
-        
-        # Добавляем кнопку для скачивания PDF
-        with open(pdf_path, "rb") as pdf_file:
+        # Процесс обработки
+        pdf_path = process_files(save_path)
+        st.success(f"Файл успешно обработан! Скачайте PDF: {pdf_path}")
+
+        # Ссылка для скачивания
+        with open(pdf_path, "rb") as f:
             st.download_button(
                 label="Скачать PDF",
-                data=pdf_file,
-                file_name="Технический план.pdf",
+                data=f,
+                file_name="Технический_план.pdf",
                 mime="application/pdf"
             )
+
     except Exception as e:
         st.error(f"Произошла ошибка: {e}")
