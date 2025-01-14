@@ -42,7 +42,7 @@ if uploaded_zip is not None:
 
     #---------------------------------------
     extract_zip_with_directories(uploaded_zip, dir_path)
-    os.listdir(dir_path)
+    st.write(os.listdir(dir_path))
 
     #---------------------------------------
 
