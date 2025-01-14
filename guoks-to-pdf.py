@@ -11,6 +11,12 @@ st.title("Создание pdf из zip-архива технического п
 uploaded_zip = st.file_uploader("Загрузите ZIP-файл технического плана", type=["zip"])
 if uploaded_zip is not None:
     zf = zipfile.ZipFile(uploaded_zip)
+    #-------------------------
+    with ZipFile(uploaded_zip, 'r') as zip_ref:
+    for info in zip_ref.infolist():
+        st.write(info.filename)
+    #-------------------------
+    
     if os.path.exists('GUOKS'):
         shutil.rmtree(os.path.join(os.getcwd(),'GUOKS'))
     os.makedirs('GUOKS')
@@ -41,7 +47,6 @@ if uploaded_zip is not None:
             new_name = "noname"
             if file.endswith('.xml'):
                 my_files = os.listdir(os.path.join(roots, dirs[0]))
-                #st.write(my_files)
                 geo = []        # назначаем массивы для файлов с геодезией
                 dis = []        # со схемами ЗУ
                 dia = []        # с чертежами
