@@ -8,7 +8,7 @@ from pdfrw import PdfReader, PdfWriter
 
 #--------------------------
 def extract_zip_with_directories(zip_path, extract_to):
-    with ZipFile(zip_path, 'r') as zip_ref:
+    with zipfile.ZipFile(zip_path, 'r') as zip_ref:
         for member in zip_ref.infolist():
             # Преобразуем пути, заменяя \ на /
             fixed_path = member.filename.replace('\\', '/')
