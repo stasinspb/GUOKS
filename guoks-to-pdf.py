@@ -6,22 +6,45 @@ import img2pdf
 import xml.etree.cElementTree as ET
 from pdfrw import PdfReader, PdfWriter
 
+#--------------------------
+def extract_zip_with_directories(zip_path, extract_to):
+    with ZipFile(zip_path, 'r') as zip_ref:
+        for member in zip_ref.infolist():
+            # Преобразуем пути, заменяя \ на /
+            fixed_path = member.filename.replace('\\', '/')
+            target_path = os.path.join(extract_to, fixed_path)
+            
+            # Проверяем, является ли это папкой или файлом
+            if member.is_dir():
+                os.makedirs(target_path, exist_ok=True)
+            else:
+                os.makedirs(os.path.dirname(target_path), exist_ok=True)
+                with open(target_path, 'wb') as f:
+                    f.write(zip_ref.read(member.filename))
+
+#--------------------------
+
+
+
 
 st.title("Создание pdf из zip-архива технического плана")
 uploaded_zip = st.file_uploader("Загрузите ZIP-файл технического плана", type=["zip"])
 if uploaded_zip is not None:
     zf = zipfile.ZipFile(uploaded_zip)
-    #-------------------------
-    for info in zf.infolist():
-        st.write(info.filename)
-    #-------------------------
+
     
     if os.path.exists('GUOKS'):
         shutil.rmtree(os.path.join(os.getcwd(),'GUOKS'))
     os.makedirs('GUOKS')
     dir_path = os.path.join(os.getcwd(),'GUOKS')
-    zf.extractall(dir_path)
-    zf.close()
+    #zf.extractall(dir_path)
+    #zf.close()
+
+    #---------------------------------------
+    extract_zip_with_directories(uploaded_zip, dir_path)
+    os.listdir(dir_path)
+
+    #---------------------------------------
 
    
     for root, dirs, files in os.walk(dir_path):  # снова бежим по папкам, удаляем sig, log, txt
