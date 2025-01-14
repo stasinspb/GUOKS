@@ -26,22 +26,18 @@ def extract_zip_with_directories(zip_path, extract_to):
 st.title("Создание pdf из zip-архива технического плана")
 uploaded_zip = st.file_uploader("Загрузите ZIP-файл технического плана", type=["zip"])
 if uploaded_zip is not None:
-    #zf = zipfile.ZipFile(uploaded_zip)
     if os.path.exists('GUOKS'):
         shutil.rmtree(os.path.join(os.getcwd(),'GUOKS'))
     os.makedirs('GUOKS')
     dir_path = os.path.join(os.getcwd(),'GUOKS')
-    #zf.extractall(dir_path)
-    #zf.close()
 
     #---------------------------------------
     extract_zip_with_directories(uploaded_zip, dir_path)
     st.write(os.listdir(dir_path))
-
     #---------------------------------------
 
    
-    for root, dirs, files in os.walk(dir_path):  # снова бежим по папкам, удаляем sig, log, txt
+    for root, dirs, files in os.walk(dir_path): 
         for file in files:
             if file.endswith('.sig') or \
                 file.endswith('.log') or \
@@ -49,7 +45,7 @@ if uploaded_zip is not None:
                 os.remove(os.path.join(root, file))
                         
     try:
-        for root, dirs, files in os.walk(dir_path):                    # снова бежим по папкам, перекодируем имена файлов, если такое нужно
+        for root, dirs, files in os.walk(dir_path):                    
             for file in files:
                 file_name = file.encode('cp437').decode('cp866')
                 os.rename(os.path.join(root, file), os.path.join(root, file_name))
@@ -76,7 +72,6 @@ if uploaded_zip is not None:
     
                 #st.write(text)
         
-        
                 ############  работа с xml ################
                 xml = os.path.join(roots, file)
                 tree = ET.ElementTree(file=xml)
@@ -97,8 +92,7 @@ if uploaded_zip is not None:
                         for a in element:
                             geo.append(a.attrib['Name'])
                     finally:
-                        pass  
-                #st.write(geo)        
+                        pass        
                 for element in root.iter('SchemeDisposition'):      # ... по файлам схем ЗУ
                     try:
                         dis.append(element.attrib['Name'])
@@ -125,18 +119,14 @@ if uploaded_zip is not None:
                     for a in element:
                         if a[1].text != "Текстовая часть технического плана":
                            apps.append(a[2].attrib['Name'])
-                #st.write(apps) 
     ########### начинаем собирать пдф ########################################
                 #st.write(os.path.join(roots, dirs[0], text)) 
                 reader_input = PdfReader(os.path.join(roots, dirs[0], text))    # начинаем с текстовой части
                 writer_output = PdfWriter()
                 for current_page in range(len(reader_input.pages)):
                     writer_output.addpage(reader_input.pages[current_page])
-                #st.write("Текст добавлен")
                 for p in geo:                                           # добавляем файлы с геодезией
-                    #st.write(os.path.join(roots, p))
                     reader_input = PdfReader(os.path.join(roots, p).replace("\\","/"))
-                    #st.write("Гео добавлен")
                     for current_page in range(len(reader_input.pages)):
                         writer_output.addpage(reader_input.pages[current_page])
     
@@ -167,15 +157,14 @@ if uploaded_zip is not None:
                         writer_output.addpage(reader_input.pages[current_page])
     
                 writer_output.write(os.path.join(os.path.join(os.getcwd(), "Технический план.pdf"))) # сохраняем файл пдф
-                st.write(new_name)
+                st.success(new_name)
     
-    #st.write(os.listdir(dir_path))
     with open(os.path.join(os.getcwd(), "Технический план.pdf"), "rb") as file:
         st.download_button(
             label="Скачать pdf",
             data=file,
             file_name="Технический план.pdf",
-            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            #mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         )
 
 
