@@ -33,7 +33,6 @@ if uploaded_zip is not None:
 
     #---------------------------------------
     extract_zip_with_directories(uploaded_zip, dir_path)
-    st.write(os.listdir(dir_path))
     #---------------------------------------
 
    
@@ -164,7 +163,7 @@ if uploaded_zip is not None:
             label="Скачать pdf",
             data=file,
             file_name="Технический план.pdf",
-            #mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            mime="application/octet-stream"
         )
 
 
