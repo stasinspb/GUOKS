@@ -10,7 +10,6 @@ from pdfrw import PdfReader, PdfWriter
 def extract_zip_with_directories(zip_path, extract_to):
     with zipfile.ZipFile(zip_path, 'r') as zip_ref:
         for member in zip_ref.infolist():
-            # Преобразуем пути, заменяя \ на /
             fixed_path = member.filename.replace('\\', '/')
             target_path = os.path.join(extract_to, fixed_path)
             
@@ -24,15 +23,10 @@ def extract_zip_with_directories(zip_path, extract_to):
 
 #--------------------------
 
-
-
-
 st.title("Создание pdf из zip-архива технического плана")
 uploaded_zip = st.file_uploader("Загрузите ZIP-файл технического плана", type=["zip"])
 if uploaded_zip is not None:
-    zf = zipfile.ZipFile(uploaded_zip)
-
-    
+    #zf = zipfile.ZipFile(uploaded_zip)
     if os.path.exists('GUOKS'):
         shutil.rmtree(os.path.join(os.getcwd(),'GUOKS'))
     os.makedirs('GUOKS')
