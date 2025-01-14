@@ -19,12 +19,12 @@ if uploaded_zip is not None:
     zf.close()
 
    
-     for root, dirs, files in os.walk(dir_path):  # снова бежим по папкам, удаляем sig, log, txt
-         for file in files:
-             if file.endswith('.sig') or \
-                     file.endswith('.log') or \
-                     file.endswith('.txt'):
-                 os.remove(os.path.join(root, file))
+    for root, dirs, files in os.walk(dir_path):  # снова бежим по папкам, удаляем sig, log, txt
+        for file in files:
+            if file.endswith('.sig') or \
+                file.endswith('.log') or \
+                file.endswith('.txt'):
+                os.remove(os.path.join(root, file))
                         
     try:
         for root, dirs, files in os.walk(dir_path):                    # снова бежим по папкам, перекодируем имена файлов, если такое нужно
