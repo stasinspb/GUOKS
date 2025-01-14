@@ -13,8 +13,8 @@ if uploaded_zip is not None:
     zf = zipfile.ZipFile(uploaded_zip)
     #-------------------------
     with ZipFile(uploaded_zip, 'r') as zip_ref:
-    for info in zip_ref.infolist():
-        st.write(info.filename)
+        for info in zip_ref.infolist():
+            st.write(info.filename)
     #-------------------------
     
     if os.path.exists('GUOKS'):
