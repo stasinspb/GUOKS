@@ -1,16 +1,16 @@
 import streamlit as st
 import os
 st.write(os.listdir())
-# Initialize session state
-st.session_state.text = st.session_state.get('text', 'original')
+def reveal_button():
+    st.session_state.show_button = True
 
-if st.button("show"):
-    # Allow the user to modify the text
-    st.text_input("Edit Text", key='text')        # <--- set using the key kwarg
+# Устанавливаем начальное состояние
+if "show_button" not in st.session_state:
+    st.session_state.show_button = False
 
-# Display the modified text
-st.markdown(st.session_state.text)
+# Кнопка для события
+st.button("Событие", on_click=reveal_button)
 
-if st.button("show again"):
-    # Display the modified text
-    st.markdown(st.session_state.text)
+# Показываем кнопку после события
+if st.session_state.show_button:
+    st.button("Появившаяся кнопка")
