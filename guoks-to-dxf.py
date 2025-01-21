@@ -39,7 +39,7 @@ if os.path.exists('DXF'):
 
 st.title("Создание файла Autocad (dxf) из zip-архивов технических планов зданий и сооружений")
 uploaded_files = st.file_uploader("Загрузите ZIP-файлы технических планов", type=["zip"], accept_multiple_files=True)
-
+st.success("Загрузка завершена!")
 if uploaded_files is not None:
     if "processing_done" not in st.session_state:
         st.session_state.processing_done = False
