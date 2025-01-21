@@ -126,6 +126,8 @@ if uploaded_files is not None:
             cvet += 1
             if cvet == 50:
                 cvet = 2
+    doc.saveas(os.path.join(t, "Общий план объектов.dxf"))
+    st.success("Общий план объектов.dxf")
                                  
                                      
                         
