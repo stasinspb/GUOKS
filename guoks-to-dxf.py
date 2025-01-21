@@ -133,8 +133,7 @@ if uploaded_files is not None:
         label="Скачать dxf",
         data=file,
         file_name="Общий план объектов.dxf",
-        mime="application/octet-stream",
-        disabled=True)
+        mime="application/octet-stream")
 
                                  
                                      
