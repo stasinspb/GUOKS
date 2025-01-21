@@ -136,7 +136,7 @@ if uploaded_files is not None:
         data=file,
         file_name="Общий план объектов.dxf",
         mime="application/octet-stream",
-        disable=True)
+        disabled=flag)
 
                                  
                                      
