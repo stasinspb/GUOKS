@@ -50,7 +50,6 @@ if uploaded_files is not None:
             os.makedirs(os.path.join(os.getcwd(),'DXF', uploaded_file.name))
         dir_path = os.path.join(os.getcwd(),'DXF', uploaded_file.name)
         extract_zip_with_directories(uploaded_file, dir_path)
-        st.write(os.listdir(dir_path))
     #---------------------------------------
     t = os.path.join(os.getcwd(),'DXF')
     for roots, dirs, files in os.walk(t):
@@ -127,7 +126,6 @@ if uploaded_files is not None:
             if cvet == 50:
                 cvet = 2
     doc.saveas(os.path.join(t, "Общий план объектов.dxf"))
-    st.success("Общий план объектов.dxf")
     with open(os.path.join(t, "Общий план объектов.dxf"), "rb") as file:
         st.download_button(
             label="Скачать dxf",
