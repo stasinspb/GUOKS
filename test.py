@@ -16,7 +16,7 @@ if st.button("Начать обработку"):
 if st.session_state.processing_done:
     st.download_button(
         label="Скачать файл",
-        data=b"Пример данных файла",  # Заглушка для данных файла
+        data="Пример данных файла",  # Заглушка для данных файла
         file_name="example.dxf",
         mime="application/octet-stream",
     )
