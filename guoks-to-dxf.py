@@ -10,8 +10,39 @@ import shutil
     
 # st.write(os.listdir())
 
+#--------------------------
+def extract_zip_with_directories(zip_path, extract_to):
+    with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+        for member in zip_ref.infolist():
+            fixed_path = member.filename.replace('\\', '/')
+            target_path = os.path.join(extract_to, fixed_path)
+            
+            # Проверяем, является ли это папкой или файлом
+            if member.is_dir():
+                os.makedirs(target_path, exist_ok=True)
+            else:
+                os.makedirs(os.path.dirname(target_path), exist_ok=True)
+                with open(target_path, 'wb') as f:
+                    f.write(zip_ref.read(member.filename))
+
+#--------------------------
+
+
 st.title("Создание файла Autocad (dxf) из zip-архивов технических планов зданий и сооружений")
-# #uploaded_files = st.file_uploader("Загрузите ZIP-файлы технических планов", type=["zip"], accept_multiple_files=True)
+uploaded_files = st.file_uploader("Загрузите ZIP-файлы технических планов", type=["zip"], accept_multiple_files=True)
+
+if uploaded_zip is not None:
+    if os.path.exists('GUOKS'):
+        shutil.rmtree(os.path.join(os.getcwd(),'GUOKS'))
+    os.makedirs('GUOKS')
+    for uploaded_file in uploaded_files:
+        dir_path = os.path.join(os.getcwd(),'GUOKS', uploaded_file)
+        #---------------------------------------
+        extract_zip_with_directories(uploaded_zip, dir_path)
+        #---------------------------------------
+st.write(os.listdir())
+
+
 # for uploaded_file in uploaded_files:
 #     st.write(uploaded_file.name)
 #     if os.path.exists(uploaded_file.name):
