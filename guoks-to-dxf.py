@@ -33,13 +33,14 @@ def proverka_name(new_name):
 #--------------------------
 
 
-doc = ezdxf.new(dxfversion="R2010")
-msp = doc.modelspace()
-cvet = 2
+
 
 st.title("Создание файла Autocad (dxf) из zip-архивов технических планов зданий и сооружений")
 uploaded_files = st.file_uploader("Загрузите ZIP-файлы технических планов", type=["zip"], accept_multiple_files=True)
 if uploaded_files is not None:
+    doc = ezdxf.new(dxfversion="R2010")
+    msp = doc.modelspace()
+    cvet = 2
     if os.path.exists('DXF'):
         shutil.rmtree(os.path.join(os.getcwd(),'DXF'))
     os.makedirs('DXF')
@@ -131,7 +132,8 @@ if uploaded_files is not None:
             label="Скачать dxf",
             data=file,
             file_name="Общий план объектов.dxf",
-            mime="application/octet-stream")
+            mime="application/octet-stream",
+            disabled=True)
                                  
                                      
                         
