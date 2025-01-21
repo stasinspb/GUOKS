@@ -51,7 +51,6 @@ for file in os.listdir():
 # os.remove("GKUOKS_0cc7df6c-a687-4556-94d4-0cb4df49abf9.xml.sig")
 # st.write(os.listdir())
 
-
 # for uploaded_file in uploaded_files:
 #     st.write(uploaded_file.name)
 #     if os.path.exists(uploaded_file.name):
