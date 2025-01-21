@@ -31,15 +31,7 @@ def proverka_name(new_name):
     return (s)
     
 #--------------------------
-
-with open("requirements.txt", "rb") as file:
-    st.download_button(
-        label="Скачать dxf",
-        file_name="Общий план объектов.dxf",
-        mime="application/octet-stream",
-        disabled=False)
-
-
+st.button("Кнопка для текста")
 
 st.title("Создание файла Autocad (dxf) из zip-архивов технических планов зданий и сооружений")
 uploaded_files = st.file_uploader("Загрузите ZIP-файлы технических планов", type=["zip"], accept_multiple_files=True)
