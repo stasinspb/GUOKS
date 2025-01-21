@@ -23,6 +23,7 @@ def extract_zip_with_directories(zip_path, extract_to):
 
 st.title("Создание файла Autocad (dxf) из zip-архивов технических планов зданий и сооружений")
 uploaded_files = st.file_uploader("Загрузите ZIP-файлы технических планов", type=["zip"], accept_multiple_files=True)
+os.makedirs('DXF')
 st.write(os.listdir())
 
    
