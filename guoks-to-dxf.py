@@ -9,5 +9,5 @@ uploaded_files = st.file_uploader("Загрузите ZIP-файлы техни�
 for uploaded_file in uploaded_files:
     st.write(uploaded_file.name)
     with zipfile.ZipFile(uploaded_file, 'r') as zip_ref:
-        zip_ref.extractall(uploaded_file)
+        zip_ref.extractall(uploaded_file.name)
 st.write(os.listdir())
