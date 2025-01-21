@@ -32,9 +32,10 @@ def proverka_name(new_name):
     
 #--------------------------
 
-st.download_button(
-    label="Скачать dxf",
-    disabled=True)
+with open("flower.png", "rb") as file:
+    st.download_button(
+        label="Скачать dxf",
+        disabled=True)
 
 
 
