@@ -32,10 +32,11 @@ st.title("Создание файла Autocad (dxf) из zip-архивов те
 uploaded_files = st.file_uploader("Загрузите ZIP-файлы технических планов", type=["zip"], accept_multiple_files=True)
 
 if uploaded_files is not None:
-    if os.path.exists('GUOKS'):
-        shutil.rmtree(os.path.join(os.getcwd(),'GUOKS'))
-    os.makedirs('GUOKS')
+    if os.path.exists('DXF'):
+        shutil.rmtree(os.path.join(os.getcwd(),'DXF'))
+    os.makedirs('DXF')
     for uploaded_file in uploaded_files:
+        os.makedirs(os.path.join(os.getcwd(), 'DXF', uploaded_file.name))
         dir_path = os.path.join(os.getcwd(),'GUOKS', uploaded_file.name)
         #---------------------------------------
         extract_zip_with_directories(uploaded_file, dir_path)
@@ -44,8 +45,10 @@ if uploaded_files is not None:
 for root, dirs, files in os.walk('GUOKS'): 
     for file in files:
         st.write(file)
-
-
+try:
+    shutil.rmtree(os.path.join(os.getcwd(),'GUOKS'))
+except:
+    pass
 # st.write(os.listdir())
 # os.remove("GKUOKS_0cc7df6c-a687-4556-94d4-0cb4df49abf9.xml.sig")
 # st.write(os.listdir())
