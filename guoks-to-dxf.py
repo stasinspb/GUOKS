@@ -33,6 +33,7 @@ if uploaded_files is not None:
     for uploaded_file in uploaded_files:
         extract_zip_with_directories(uploaded_file, dir_path)
     st.write(os.listdir())
+    st.write(os.listdir(dir_path))
     #---------------------------------------
 
    
