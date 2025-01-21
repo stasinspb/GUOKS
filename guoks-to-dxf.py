@@ -31,11 +31,11 @@ if uploaded_files is not None:
 
     #---------------------------------------
     for uploaded_file in uploaded_files:
-        os.makedirs(os.path.join(os.getcwd(),'DXF', uploaded_file.name))
+        if not os.path.exists(os.path.join(os.getcwd(),'DXF', uploaded_file.name)):
+            os.makedirs(os.path.join(os.getcwd(),'DXF', uploaded_file.name))
         dir_path = os.path.join(os.getcwd(),'DXF', uploaded_file.name)
         extract_zip_with_directories(uploaded_file, dir_path)
     st.write(os.listdir('DXF'))
-    st.write(os.listdir(dir_path))
     #---------------------------------------
 
    
