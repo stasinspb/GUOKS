@@ -1,4 +1,3 @@
 pdfrw
 img2pdf
 streamlit
-import ezdxf
