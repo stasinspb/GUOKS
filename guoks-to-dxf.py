@@ -42,7 +42,7 @@ if uploaded_files is not None:
         #---------------------------------------
 st.write(os.listdir('GUOKS'))
 shutil.rmtree(os.path.join(os.getcwd(),'GUOKS'))
-st.write(os.listdir('GUOKS'))
+st.write(os.listdir())
 
 
 # for uploaded_file in uploaded_files:
