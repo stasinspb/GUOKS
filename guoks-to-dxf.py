@@ -31,6 +31,12 @@ def proverka_name(new_name):
         s = new_name + " (" + str(number) + ")"
     return (s)
     
+#--------------------------
+
+if "processing_done" not in st.session_state:
+    st.session_state.processing_done = False
+
+
 st.write(os.listdir())
 if os.path.exists('DXF'):
     shutil.rmtree(os.path.join(os.getcwd(),'DXF'))
@@ -128,9 +134,10 @@ if uploaded_files is not None:
             if cvet == 50:
                 cvet = 2
     doc.saveas(os.path.join(t, "Общий план объектов.dxf"))
-    processing_done = True
-    if processing_done:
-        with open(os.path.join(t, "Общий план объектов.dxf"), "rb") as file:
+    st.session_state.processing_done = True
+    st.success("Обработка завершена!")
+    with open(os.path.join(t, "Общий план объектов.dxf"), "rb") as file:
+        if st.session_state.processing_done:
             st.download_button(
                 label="Скачать dxf",
                 data=file,
