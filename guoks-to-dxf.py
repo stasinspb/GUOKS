@@ -4,6 +4,7 @@ import os
 import shutil
 import xml.etree.cElementTree as ET
 import ezdxf
+st.write(os.listdir())
 #--------------------------
 def extract_zip_with_directories(zip_path, extract_to):
     with zipfile.ZipFile(zip_path, 'r') as zip_ref:
