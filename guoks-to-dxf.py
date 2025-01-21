@@ -31,10 +31,11 @@ def proverka_name(new_name):
     return (s)
     
 #--------------------------
-st.button("Кнопка для текста")
+
 
 st.title("Создание файла Autocad (dxf) из zip-архивов технических планов зданий и сооружений")
 uploaded_files = st.file_uploader("Загрузите ZIP-файлы технических планов", type=["zip"], accept_multiple_files=True)
+st.session_state.show_button = False
 if uploaded_files is not None:
     doc = ezdxf.new(dxfversion="R2010")
     msp = doc.modelspace()
