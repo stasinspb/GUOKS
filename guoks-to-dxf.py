@@ -42,7 +42,11 @@ if uploaded_files is not None:
         #---------------------------------------
 st.write(os.listdir('GUOKS'))
 shutil.rmtree(os.path.join(os.getcwd(),'GUOKS'))
-os.remove("GKUOKS_ba45a23d-2bbc-4504-956f-d5b25083c508.zip")
+for file in os.listdir():
+    try:
+        shutil.rmtree(file)
+    except:
+        pass
 # st.write(os.listdir())
 # os.remove("GKUOKS_0cc7df6c-a687-4556-94d4-0cb4df49abf9.xml.sig")
 # st.write(os.listdir())
