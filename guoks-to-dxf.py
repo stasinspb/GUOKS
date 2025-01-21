@@ -31,7 +31,7 @@ def extract_zip_with_directories(zip_path, extract_to):
 st.title("Создание файла Autocad (dxf) из zip-архивов технических планов зданий и сооружений")
 uploaded_files = st.file_uploader("Загрузите ZIP-файлы технических планов", type=["zip"], accept_multiple_files=True)
 
-if uploaded_zip is not None:
+if uploaded_files is not None:
     if os.path.exists('GUOKS'):
         shutil.rmtree(os.path.join(os.getcwd(),'GUOKS'))
     os.makedirs('GUOKS')
