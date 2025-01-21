@@ -32,7 +32,7 @@ def proverka_name(new_name):
     
 #--------------------------
 
-with open(os.path.join(t, "Общий план объектов.dxf"), "rb") as file:
+with open("Общий план объектов.dxf", "rb") as file:
     st.download_button(
         label="Скачать dxf",
         file_name="Общий план объектов.dxf",
