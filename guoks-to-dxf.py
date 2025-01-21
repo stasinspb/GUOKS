@@ -129,7 +129,7 @@ if uploaded_files is not None:
     doc.saveas(os.path.join(t, "Общий план объектов.dxf"))
     st.success("Общий план объектов.dxf")
     with open(os.path.join(t, "Общий план объектов.dxf"), "rb") as file:
-    st.download_button(
+        st.download_button(
         label="Скачать dxf",
         data=file,
         file_name="Общий план объектов.dxf",
