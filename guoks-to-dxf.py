@@ -32,6 +32,12 @@ def proverka_name(new_name):
     
 #--------------------------
 
+st.download_button(
+    label="Скачать dxf",
+    data=file,
+    file_name="Общий план объектов.dxf",
+    mime="application/octet-stream",
+    disabled=True)
 
 
 
@@ -133,7 +139,7 @@ if uploaded_files is not None:
             data=file,
             file_name="Общий план объектов.dxf",
             mime="application/octet-stream",
-            disabled=True)
+            disabled=False)
                                  
                                      
                         
