@@ -44,8 +44,8 @@ st.write(os.listdir('GUOKS'))
 shutil.rmtree(os.path.join(os.getcwd(),'GUOKS'))
 for file in os.listdir():
     st.write(file)
-    #if file[:6] == "GKUOKS":
-        #os.remove(file)
+    if file[:6] == "GKUOKS":
+        os.remove(file)
 # st.write(os.listdir())
 # os.remove("GKUOKS_0cc7df6c-a687-4556-94d4-0cb4df49abf9.xml.sig")
 # st.write(os.listdir())
