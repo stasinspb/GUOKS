@@ -36,7 +36,7 @@ if uploaded_files is not None:
         shutil.rmtree(os.path.join(os.getcwd(),'GUOKS'))
     os.makedirs('GUOKS')
     for uploaded_file in uploaded_files:
-        dir_path = os.path.join(os.getcwd(),'GUOKS', uploaded_file)
+        dir_path = os.path.join(os.getcwd(),'GUOKS', uploaded_file.name)
         #---------------------------------------
         extract_zip_with_directories(uploaded_zip, dir_path)
         #---------------------------------------
