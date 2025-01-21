@@ -125,14 +125,14 @@ if uploaded_files is not None:
             cvet += 1
             if cvet == 50:
                 cvet = 2
-        doc.saveas(os.path.join(t, "Общий план объектов.dxf"))
-        with open(os.path.join(t, "Общий план объектов.dxf"), "rb") as file:
-            st.download_button(
-                label="Скачать dxf",
-                data=file,
-                file_name="Общий план объектов.dxf",
-                mime="application/octet-stream",
-                disabled=False)
+    doc.saveas(os.path.join(t, "Общий план объектов.dxf"))
+    with open(os.path.join(t, "Общий план объектов.dxf"), "rb") as file:
+        st.download_button(
+            label="Скачать dxf",
+            data=file,
+            file_name="Общий план объектов.dxf",
+            mime="application/octet-stream",
+            disabled=False)
                                  
                                      
                         
