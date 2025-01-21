@@ -135,6 +135,8 @@ if uploaded_files is not None:
             file_name="Общий план объектов.dxf",
             mime="application/octet-stream",
             disabled=False)
+
+shutil.rmtree(os.path.join(os.getcwd(),'DXF'))
                                  
                                      
                         
