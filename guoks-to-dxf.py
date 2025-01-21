@@ -128,6 +128,7 @@ if uploaded_files is not None:
             if cvet == 50:
                 cvet = 2
     doc.saveas(os.path.join(t, "Общий план объектов.dxf"))
+    st.success("Выполнено")
     with open(os.path.join(t, "Общий план объектов.dxf"), "rb") as file:
         st.download_button(
         label="Скачать dxf",
