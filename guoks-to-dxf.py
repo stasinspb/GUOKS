@@ -23,18 +23,7 @@ def extract_zip_with_directories(zip_path, extract_to):
 
 st.title("Создание файла Autocad (dxf) из zip-архивов технических планов зданий и сооружений")
 uploaded_files = st.file_uploader("Загрузите ZIP-файлы технических планов", type=["zip"], accept_multiple_files=True)
-if uploaded_files is not None:
-    if os.path.exists('DXF'):
-        shutil.rmtree(os.path.join(os.getcwd(),'DXF'))
-    os.makedirs('DXF')
-    dir_path = os.path.join(os.getcwd(),'DXF')
-
-    #---------------------------------------
-    for uploaded_file in uploaded_files:
-        extract_zip_with_directories(uploaded_file, dir_path)
-    st.write(os.listdir())
-    st.write(os.listdir(dir_path))
-    #---------------------------------------
+st.write(os.listdir())
 
    
 
