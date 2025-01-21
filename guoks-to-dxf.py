@@ -20,6 +20,19 @@ def extract_zip_with_directories(zip_path, extract_to):
                     f.write(zip_ref.read(member.filename))
 
 #--------------------------
+
+def proverka_name(new_name):
+    spisok = doc.layers
+    s = new_name
+    number = 1
+    while s in spisok:
+        number += 1
+        s = new_name + " (" + str(number) + ")"
+    return (s)
+    
+#--------------------------
+
+
 doc = ezdxf.new(dxfversion="R2010")
 msp = doc.modelspace()
 cvet = 2
@@ -39,6 +52,16 @@ if uploaded_files is not None:
         extract_zip_with_directories(uploaded_file, dir_path)
         st.write(os.listdir(dir_path))
     #---------------------------------------
+    t = os.path.join(os.getcwd(),'DXF')
+    for roots, dirs, files in os.walk(t):
+        for file in files:
+            if file.endswith('.xml'):
+                name_oks = ""
+                zd = False
+                xml = os.path.join(roots, file)
+                tree = ET.ElementTree(file=xml)
+                root = tree.getroot()
+                st.write(file)
 
    
    
