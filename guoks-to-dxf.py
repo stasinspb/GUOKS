@@ -56,7 +56,7 @@ st.button("Событие", on_click=reveal_button)
 
 # Показываем кнопку после события
 if st.session_state.show_button:
-    st.button("Появившаяся кнопка")
+    st.button("Скачать dxf")
     
 if uploaded_files is not None:
     doc = ezdxf.new(dxfversion="R2010")
