@@ -4,11 +4,11 @@ import os
 import shutil
 #import xml.etree.cElementTree as ET
 
-for file in os.listdir():
-    if file not in [".git", "guoks-to-dxf.py", "requirements.txt", ".streamlit", "guoks-to-pdf.py"]:
-        shutil.rmtree(os.path.join(os.getcwd(), file))
+# for file in os.listdir():
+#     if file not in [".git", "guoks-to-dxf.py", "requirements.txt", ".streamlit", "guoks-to-pdf.py"]:
+#         shutil.rmtree(os.path.join(os.getcwd(), file))
     
-st.write(os.listdir())
+# st.write(os.listdir())
 
 st.title("Создание файла Autocad (dxf) из zip-архивов технических планов зданий и сооружений")
 # #uploaded_files = st.file_uploader("Загрузите ZIP-файлы технических планов", type=["zip"], accept_multiple_files=True)
