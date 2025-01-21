@@ -27,9 +27,14 @@ if uploaded_files is not None:
     if os.path.exists('DXF'):
         shutil.rmtree(os.path.join(os.getcwd(),'DXF'))
     os.makedirs('DXF')
-    st.write(os.listdir())
+    #dir_path = os.path.join(os.getcwd(),'DXF')
+
+    #---------------------------------------
+    for uploaded_file in uploaded_files:
+        os.makedirs(os.path.join(os.getcwd(),'DXF', uploaded_file.name))
+        dir_path = os.path.join(os.getcwd(),'DXF', uploaded_file.name)
+        extract_zip_with_directories(uploaded_zip, dir_path)
+    #---------------------------------------
 
    
-
-
-
+   
