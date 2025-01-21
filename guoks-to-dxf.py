@@ -32,10 +32,12 @@ def proverka_name(new_name):
     
 #--------------------------
 
-with open("flower.png", "rb") as file:
+with open(os.path.join(t, "Общий план объектов.dxf"), "rb") as file:
     st.download_button(
         label="Скачать dxf",
-        disabled=True)
+        file_name="Общий план объектов.dxf",
+        mime="application/octet-stream",
+        disabled=False)
 
 
 
