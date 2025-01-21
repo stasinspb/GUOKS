@@ -37,12 +37,16 @@ doc = ezdxf.new(dxfversion="R2010")
 msp = doc.modelspace()
 cvet = 2
 
+if os.path.exists('DXF'):
+    shutil.rmtree(os.path.join(os.getcwd(),'DXF'))
+os.makedirs('DXF')
+
 st.title("Создание файла Autocad (dxf) из zip-архивов технических планов зданий и сооружений")
 uploaded_files = st.file_uploader("Загрузите ZIP-файлы технических планов", type=["zip"], accept_multiple_files=True)
 if uploaded_files is not None:
-    if os.path.exists('DXF'):
-        shutil.rmtree(os.path.join(os.getcwd(),'DXF'))
-    os.makedirs('DXF')
+    # if os.path.exists('DXF'):
+    #     shutil.rmtree(os.path.join(os.getcwd(),'DXF'))
+    # os.makedirs('DXF')
     
     #---------------------------------------
     for uploaded_file in uploaded_files:
