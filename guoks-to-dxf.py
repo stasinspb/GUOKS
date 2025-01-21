@@ -33,6 +33,11 @@ def proverka_name(new_name):
     
 #--------------------------
 
+def reveal_button():
+    st.session_state.show_button = True
+    
+#--------------------------
+
 st.write(os.listdir())
 if os.path.exists('DXF'):
     shutil.rmtree(os.path.join(os.getcwd(),'DXF'))
@@ -40,7 +45,19 @@ st.write(os.listdir())
 
 st.title("Создание файла Autocad (dxf) из zip-архивов технических планов зданий и сооружений")
 uploaded_files = st.file_uploader("Загрузите ZIP-файлы технических планов", type=["zip"], accept_multiple_files=True)
-st.session_state.show_button = False
+
+
+# Устанавливаем начальное состояние
+if "show_button" not in st.session_state:
+    st.session_state.show_button = False
+
+# Кнопка для события
+st.button("Событие", on_click=reveal_button)
+
+# Показываем кнопку после события
+if st.session_state.show_button:
+    st.button("Появившаяся кнопка")
+    
 if uploaded_files is not None:
     doc = ezdxf.new(dxfversion="R2010")
     msp = doc.modelspace()
@@ -129,6 +146,7 @@ if uploaded_files is not None:
             if cvet == 50:
                 cvet = 2
     doc.saveas(os.path.join(t, "Общий план объектов.dxf"))
+    
     with open(os.path.join(t, "Общий план объектов.dxf"), "rb") as file:
         st.download_button(
             label="Скачать dxf",
