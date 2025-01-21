@@ -35,6 +35,7 @@ if uploaded_files is not None:
     if os.path.exists('DXF'):
         shutil.rmtree(os.path.join(os.getcwd(),'DXF'))
     os.makedirs('DXF')
+    st.write(os.listdir())
     for uploaded_file in uploaded_files:
         os.makedirs(os.path.join(os.getcwd(), 'DXF', uploaded_file.name))
         dir_path = os.path.join(os.getcwd(),'GUOKS', uploaded_file.name)
