@@ -32,7 +32,7 @@ def proverka_name(new_name):
     
 #--------------------------
 
-with open("DXF\Общий план объектов.dxf", "rb") as file:
+with open("requirements.txt", "rb") as file:
     st.download_button(
         label="Скачать dxf",
         file_name="Общий план объектов.dxf",
