@@ -5,6 +5,7 @@ import shutil
 import xml.etree.cElementTree as ET
 import ezdxf
 
+flag = False
 #--------------------------
 def extract_zip_with_directories(zip_path, extract_to):
     with zipfile.ZipFile(zip_path, 'r') as zip_ref:
@@ -128,12 +129,14 @@ if uploaded_files is not None:
             if cvet == 50:
                 cvet = 2
     doc.saveas(os.path.join(t, "Общий план объектов.dxf"))
+    flag = True
     with open(os.path.join(t, "Общий план объектов.dxf"), "rb") as file:
         st.download_button(
         label="Скачать dxf",
         data=file,
         file_name="Общий план объектов.dxf",
-        mime="application/octet-stream")
+        mime="application/octet-stream",
+        disable=True if not flag else False)
 
                                  
                                      
