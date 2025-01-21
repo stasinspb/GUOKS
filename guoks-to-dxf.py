@@ -40,7 +40,8 @@ if uploaded_files is not None:
         #---------------------------------------
         extract_zip_with_directories(uploaded_file, dir_path)
         #---------------------------------------
-st.write(os.listdir('GUOKS'))
+for dir in os.listdir('GUOKS'):
+    st.write(os.listdir(os.path.join(os.getcwd(), 'GUOKS', dir)))
 #shutil.rmtree(os.path.join(os.getcwd(),'GUOKS'))
 
 
