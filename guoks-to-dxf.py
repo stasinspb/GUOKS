@@ -4,10 +4,7 @@ import os
 import shutil
 import xml.etree.cElementTree as ET
 import ezdxf
-st.write(os.listdir())
-if os.path.exists('DXF'):
-    shutil.rmtree(os.path.join(os.getcwd(),'DXF'))
-st.write(os.listdir())
+
 #--------------------------
 def extract_zip_with_directories(zip_path, extract_to):
     with zipfile.ZipFile(zip_path, 'r') as zip_ref:
@@ -36,6 +33,10 @@ def proverka_name(new_name):
     
 #--------------------------
 
+st.write(os.listdir())
+if os.path.exists('DXF'):
+    shutil.rmtree(os.path.join(os.getcwd(),'DXF'))
+st.write(os.listdir())
 
 st.title("Создание файла Autocad (dxf) из zip-архивов технических планов зданий и сооружений")
 uploaded_files = st.file_uploader("Загрузите ZIP-файлы технических планов", type=["zip"], accept_multiple_files=True)
@@ -136,7 +137,6 @@ if uploaded_files is not None:
             mime="application/octet-stream",
             disabled=False)
 
-shutil.rmtree(os.path.join(os.getcwd(),'DXF'))
                                  
                                      
                         
