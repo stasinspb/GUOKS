@@ -33,6 +33,8 @@ def proverka_name(new_name):
     
 #--------------------------
 
+st.write(uploaded_files.name)
+
 if "processing_done" not in st.session_state:
     st.session_state.processing_done = False
 
