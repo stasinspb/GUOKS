@@ -38,8 +38,13 @@ if os.path.exists('DXF'):
     shutil.rmtree(os.path.join(os.getcwd(),'DXF'))
 
 st.title("Создание файла Autocad (dxf) из zip-архивов технических планов зданий и сооружений")
+if "files_uploaded" not in st.session_state:
+    st.session_state.files_uploaded = False
 uploaded_files = st.file_uploader("Загрузите ZIP-файлы технических планов", type=["zip"], accept_multiple_files=True)
-st.success("Загрузка завершена!")
+if uploaded_files:
+    st.session_state.files_uploaded = True
+if st.session_state.files_uploaded:
+    st.success(f"Загружено файлов: {len(uploaded_files)}")
 if uploaded_files is not None:
     if "processing_done" not in st.session_state:
         st.session_state.processing_done = False
