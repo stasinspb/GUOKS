@@ -36,13 +36,12 @@ paramsEX = {
     'query': '89:04:020602:1337',
 }
 st.write("1")
+
 response = requests.get(
-    'https://nspd.gov.ru/api/geoportal/v2/search/geoportal',
-    params=paramsEX,
+    'https://httpbin.org/ip',
     cookies=cookies,
     headers=headers,
     verify=False,
-    proxies=proxies,
+    proxies=proxies
 )
-
 st.write(response.json())
