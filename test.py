@@ -38,7 +38,8 @@ paramsEX = {
 st.write("1")
 
 response = requests.get(
-    'https://httpbin.org/ip',
+    'https://nspd.gov.ru/api/geoportal/v2/search/geoportal',
+    params=paramsEX,
     cookies=cookies,
     headers=headers,
     verify=False,
