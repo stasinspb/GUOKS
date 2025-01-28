@@ -8,8 +8,6 @@ import requests
 
 response = requests.get(
     'https://httpbin.org/ip',
-    cookies=cookies,
-    headers=headers,
     verify=False,  # Отключение проверки SSL, если нужно
 )
 st.write(response.json())
