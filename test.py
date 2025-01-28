@@ -43,7 +43,7 @@ response = requests.get(
     cookies=cookies,
     headers=headers,
     verify=False,
-    proxies=proxies
+    #proxies=proxies
 )
 st.write(response.json())
 
