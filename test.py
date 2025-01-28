@@ -44,4 +44,4 @@ response = requests.get(
     verify=False,
     proxies=proxies
 )
-st.write(response.text())
+st.write(response.text)
