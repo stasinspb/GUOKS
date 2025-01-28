@@ -27,9 +27,9 @@ headers = {
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
 }
 
-#proxies = {
-#    "http": "87.249.6.137:8082"
-#}
+proxies = {
+    "http": "87.249.6.137:8082"
+}
 
 paramsEX = {
     'thematicSearchId': '1',
@@ -42,7 +42,7 @@ response = requests.get(
     cookies=cookies,
     headers=headers,
     verify=False,
-    #proxies=proxies,
+    proxies=proxies,
 )
 
 st.write(response.json())
