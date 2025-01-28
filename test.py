@@ -28,7 +28,7 @@ headers = {
 }
 
 proxies = {
-    "https": "87.249.6.137:8082"
+    "http": "178.217.98.188:3128"
 }
 
 paramsEX = {
